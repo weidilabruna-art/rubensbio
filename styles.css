@@ -1,0 +1,404 @@
+:root {
+  --teal: #3E2203; /* Marrom escuro da Duda */
+  --lime: #02A51F; /* Verde esmeralda da Duda */
+  --cream: #FFFBF6; /* Creme claro solicitado */
+  --ink: #2C1E16; /* Tom chumbo marrom para texto */
+  --border: #e0d5c1; /* Borda quente suave */
+  --white: #ffffff;
+  --error: #e04f4f;
+  --shadow: rgba(62, 34, 3, 0.06);
+  
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.wrap {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Coluna Esquerda: Formulário */
+.form-side {
+  flex: 1 1 50%;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  overflow-y: auto;
+}
+
+.form-card, .success-card {
+  width: 100%;
+  max-width: 480px;
+  animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.form-card h1 {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #3E2203; /* Dark brown title */
+  margin-bottom: 12px;
+}
+
+.form-card .sub {
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--teal); /* Dark brown subtitle */
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+
+/* Grupos de Perguntas */
+.q-group {
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.q-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.q-label .req {
+  color: var(--teal);
+  opacity: 0.6;
+  margin-left: 3px;
+  font-weight: 700;
+}
+
+/* Inputs de Texto e Textarea */
+textarea, input[type="text"], input[type="tel"], select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px; /* Evita o zoom automático no iPhone (iOS exige mínimo 16px) */
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23002223' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 20px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="tel"]:focus, select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0, 34, 35, 0.1);
+}
+
+/* Opções em Cards Clickáveis (Rádio) */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.option-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.option-circle {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.option-circle::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--teal);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.2s ease;
+}
+
+.option-text {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+/* Hover e Check dos Cards */
+@media (hover: hover) {
+  .option-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-1px);
+  }
+}
+
+.option-card:has(input:checked) {
+  border-color: var(--teal);
+  background: rgba(0, 34, 35, 0.02);
+  box-shadow: 0 4px 8px rgba(0, 34, 35, 0.05);
+}
+
+.option-card input:checked ~ .option-circle {
+  border-color: var(--teal);
+}
+
+.option-card input:checked ~ .option-circle::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.option-card input:checked ~ .option-text {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+/* Seção de Contatos */
+.contact-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px dashed var(--border);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 24px;
+}
+
+.contact-section label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+/* Botões */
+.submit-button, .success-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--lime);
+  color: var(--white); /* Texto branco para leitura no verde */
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 30px;
+  padding: 16px 28px;
+  margin-top: 32px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 12px rgba(200, 230, 50, 0.35);
+  text-decoration: none;
+}
+
+.submit-button:hover, .success-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(200, 230, 50, 0.5);
+  filter: brightness(1.02);
+}
+
+.submit-button:active, .success-button:active {
+  transform: translateY(0);
+}
+
+/* Mensagens de Erro e Alerta */
+.error-msg {
+  display: none;
+  font-size: 12.5px;
+  color: var(--error);
+  margin-top: 6px;
+  font-weight: 500;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.q-group.invalid textarea, 
+.q-group.invalid input[type="text"], 
+.q-group.invalid input[type="tel"],
+.q-group.invalid select {
+  border-color: var(--error);
+}
+
+.q-group.invalid .options-grid {
+  outline: 1.5px solid rgba(224, 79, 79, 0.25);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.q-group.invalid .error-msg {
+  display: block;
+}
+
+.form-notice {
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--error);
+  margin-top: 16px;
+  font-weight: 500;
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.form-notice.show {
+  display: block;
+}
+/* Coluna Direita: Imagem do Hero */
+.photo-side {
+  flex: 1 1 50%;
+  background-color: var(--teal);
+  background-image: url('hero_photo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Tela de Sucesso */
+.success-card {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+  color: var(--teal);
+  margin: 0 auto 24px;
+}
+
+.success-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.success-card h2 {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: #3E2203; /* Dark brown heading */
+  margin-bottom: 16px;
+}
+
+.success-card p {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--teal); /* Dark brown paragraph text */
+  margin-bottom: 12px;
+}
+
+.success-card .accent-text {
+  font-weight: 500;
+  color: var(--teal);
+  margin-bottom: 24px;
+}
+
+.success-button {
+  background: var(--teal);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(62, 34, 3, 0.15);
+}
+
+.success-button:hover {
+  background: #502E05;
+  color: var(--white);
+  box-shadow: 0 6px 18px rgba(62, 34, 3, 0.25);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .form-side {
+    padding: 48px 24px;
+  }
+  .form-card h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .photo-side {
+    order: -1;
+    min-height: 280px;
+    background-position: center 20%;
+    background-image: url('hero_photo.jpg');
+  }
+  .form-side {
+    padding: 40px 20px;
+  }
+  .form-card h1 {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sessão Estratégica Gratuita</title>
+  
+  <!-- Fontes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <!-- Coluna do Formulário -->
+    <section class="form-side" id="form-container">
+      <div class="form-card" id="form-content">
+        <h1>Sessão Estratégica Gratuita</h1>
+        <p class="sub">Se você é empresário(a), especialista ou prestador de serviço e quer usar o digital para aumentar sua autoridade, atrair mais clientes e crescer seu faturamento, responda às perguntas abaixo. Vou analisar seu momento para entender se consigo te ajudar a transformar seu conhecimento ou serviço em um negócio digital mais lucrativo, previsível e escalável.</p>
+        
+        <form id="app-form" onsubmit="return false;">
+          
+          <!-- Pergunta 1: Nome Completo -->
+          <div class="q-group" data-required>
+            <label class="q-label" for="nome">1. Nome completo<span class="req">*</span></label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+            <span class="error-msg">Digite seu nome para continuar.</span>
+          </div>
+
+          <!-- Pergunta 2: WhatsApp -->
+          <div class="q-group" data-required>
+            <label class="q-label" for="whatsapp">2. Seu WhatsApp<span class="req">*</span></label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(DDD) 99999-9999" required>
+            <span class="error-msg">Digite seu número de WhatsApp para continuar.</span>
+          </div>
+
+          <!-- Pergunta 3: Me conta um pouco sobre o seu negócio -->
+          <div class="q-group" data-required>
+            <label class="q-label" for="negocio">3. Me conta um pouco sobre o seu negócio: o que você vende (ou deseja vender) hoje?<span class="req">*</span></label>
+            <textarea id="negocio" name="negocio" placeholder="Descreva brevemente o que você vende ou seu projeto de produto/serviço..." required></textarea>
+            <span class="error-msg">Escreva a sua resposta para continuar.</span>
+          </div>
+
+          <!-- Pergunta 4: Você já tem um produto digital? -->
+          <div class="q-group" data-required>
+            <label class="q-label" for="produto_digital">4. Você já tem um produto digital?<span class="req">*</span></label>
+            <select id="produto_digital" name="produto_digital" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+            <span class="error-msg">Selecione uma opção para continuar.</span>
+          </div>
+
+          <!-- Pergunta 5: Faturamento -->
+          <div class="q-group" data-required>
+            <label class="q-label" for="faturamento">5. Qual a média do seu faturamento mensal hoje?<span class="req">*</span></label>
+            <select id="faturamento" name="faturamento" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="Abaixo de R$ 3.000">Abaixo de R$ 3.000</option>
+              <option value="Entre R$ 3.000 e R$ 7.000">Entre R$ 3.000 e R$ 7.000</option>
+              <option value="Entre R$ 7.000 e R$ 12.000">Entre R$ 7.000 e R$ 12.000</option>
+              <option value="Entre R$ 12.000 e R$ 25.000">Entre R$ 12.000 e R$ 25.000</option>
+              <option value="Entre R$ 25.000 e R$ 50.000">Entre R$ 25.000 e R$ 50.000</option>
+              <option value="Acima de R$ 50.000">Acima de R$ 50.000</option>
+            </select>
+            <span class="error-msg">Selecione uma opção para continuar.</span>
+          </div>
+
+          <!-- Pergunta 6: Maior dificuldade -->
+          <div class="q-group" data-required>
+            <label class="q-label" for="dificuldade">6. Qual sua maior dificuldade hoje?<span class="req">*</span></label>
+            <textarea id="dificuldade" name="dificuldade" placeholder="Conte rapidamente o seu maior desafio hoje." required></textarea>
+            <span class="error-msg">Escreva sobre sua maior dificuldade para continuar.</span>
+          </div>
+
+          <button type="submit" id="submit-btn" class="submit-button">Enviar Minha Aplicação</button>
+          
+          <div class="form-notice" id="form-notice">
+            Responda os campos destacados para enviar.
+          </div>
+        </form>
+      </div>
+
+      <!-- Tela de Sucesso -->
+      <div class="success-card" id="success-content" style="display: none;">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2>Aplicação enviada!</h2>
+        <p>Aguarde, estamos te direcionando para o WhatsApp...</p>
+        <p class="accent-text">Caso não seja redirecionada automaticamente, clique no botão abaixo:</p>
+        
+        <a id="wa-action-btn" href="#" target="_blank" class="success-button">
+          Concluir no WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- Coluna da Foto -->
+    <aside class="photo-side" aria-hidden="true"></aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
